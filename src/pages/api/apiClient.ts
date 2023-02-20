@@ -1,34 +1,13 @@
 import { ApolloClient, createHttpLink, InMemoryCache , gql} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-interface WeatherByPointVariables {
-  lat: number;
-  lon: number;
-}
 
-interface WeatherByPointData {
-  weatherByPoint: {
-    climate: {
-      days: {
-        icon: string;
-        minNightTemperature: number;
-        maxDayTemperature: number;
-        humidity: number;
-        pressure: number;
-        maxWindSpeed: number;
-        minWindSpeed: number;
-        prec: number;
-        precProbability: number;
-      }[];
-    };
-  };
-}
 
 const GET_WEATHER_BY_POINT = gql`
   query GetWeatherByPoint($lat: Float!, $lon: Float!) {
     weatherByPoint(request: { lat: $lat, lon: $lon }) {
       climate {
-        days(limit: 1, offset: 50) {
+        days(limit: 1, offset: 52) {
           icon(format: SVG)
           minNightTemperature
           maxDayTemperature
@@ -67,7 +46,7 @@ const client = new ApolloClient({
 });
 
 async function getWeatherByPoint(lat: number, lon: number) {
-  const { data } = await client.query<WeatherByPointData, WeatherByPointVariables>({
+  const { data } = await client.query<IWeatherByPointData, IWeatherByPointVariables>({
     query: GET_WEATHER_BY_POINT,
     variables: { lat, lon },
   });
