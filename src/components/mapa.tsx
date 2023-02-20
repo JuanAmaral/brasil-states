@@ -1,14 +1,33 @@
 import * as React from "react";
 import { SVGProps } from "react";
-import { ContainerMap } from "../styles/components/Mapa/style";
+import { ContainerMap, Box } from "../styles/components/Mapa/style";
+import { useEffect, useState } from "react";
+import { states } from "@/utils/listStates";
+
+type StateAbbreviation = keyof typeof states;
+
 type PropsColors = {
   DefaultColor?: string;
   RegionHover?: string;
+  onSeleted: (value: StateAbbreviation) => void;
 };
 
-export const Mapa: React.FC<PropsColors> = ({ DefaultColor, RegionHover }) => {
+export const Mapa: React.FC<PropsColors> = ({
+  DefaultColor,
+  RegionHover,
+  onSeleted,
+}) => {
+  const [openBox, setOpenBox] = useState(false);
+  const [selected, setSelected] = useState<StateAbbreviation>();
+
+  useEffect(() => {
+    onSeleted(selected ? selected : "AC");
+    console.log("alterei:" + selected);
+  }, [selected]);
+
   return (
     <ContainerMap>
+      {openBox && <Box></Box>}
       <svg
         width={993}
         height={1000}
@@ -18,10 +37,18 @@ export const Mapa: React.FC<PropsColors> = ({ DefaultColor, RegionHover }) => {
         <path
           d="M849.868 228.538v62.639h24.143a2.77 2.77 0 0 1 1.962.813l9.173 9.173H896.2c.146 0 .292.012.436.035h2.628l5.919-8.988-11.218-14.349a2.786 2.786 0 0 1-.285-2.973l6.063-11.85v-10.62c.001-.678.25-1.331.7-1.838l6.657-7.526c.243-.275.538-.499.868-.659l25.924-12.552-24.915-23.059-5.081-9.032h-35.5l-12.156-12.156h-21.573v26.6l14.389 14.375a2.77 2.77 0 0 1 .813 1.962"
           fill="pink"
+          onClick={() => {
+            setSelected("PE");
+            setOpenBox(!openBox);
+          }}
         />
         <path
           d="M820.962 185.594a2.77 2.77 0 0 1-.735 1.231l-26.437 26.437v70.7a2.779 2.779 0 0 1-2.775 2.774h-44.507L724.544 308.7v54.431l20.67 20.67 26.893-26.893v-21.061a2.778 2.778 0 0 1 2.774-2.775h53.048l16.392-16.392v-86.993l-14.383-14.383a2.755 2.755 0 0 1-.812-1.962v-27.748h-8.164Z"
           fill="#4A34A1"
+          onClick={() => {
+            setSelected("GO");
+            setOpenBox(!openBox);
+          }}
         />
         <path
           d="M964.846 232.194H939.38a2.79 2.79 0 0 1-.535 1.112c-.26.325-.59.588-.965.769l-27 13.072-5.592 6.321v6.594h11.988l3.05-2.111a2.76 2.76 0 0 1 1.579-.493h10.42a2.784 2.784 0 0 1 2.117.981 2.765 2.765 0 0 1 .62 2.249l-2.935 17.609h14.1l11.633-11.633a2.77 2.77 0 0 1 1.962-.813h29.5l-10.43-9.987v-13.835l-14.046-9.835Z"
@@ -127,4 +154,3 @@ export const Mapa: React.FC<PropsColors> = ({ DefaultColor, RegionHover }) => {
     </ContainerMap>
   );
 };
-export default Mapa;
