@@ -6,7 +6,6 @@ const httpLink = createHttpLink({
   credentials: 'same-origin',
 });
 
-
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {

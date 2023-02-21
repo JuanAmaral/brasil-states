@@ -1,7 +1,5 @@
-import { ApolloClient, createHttpLink, InMemoryCache , gql} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { gql } from '@apollo/client';
 import { client } from './apollo';
-
 
 const GET_WEATHER_BY_POINT = gql`
   query GetWeatherByPoint($lat: Float!, $lon: Float! , $searchDate: Int!) {
@@ -32,15 +30,15 @@ function DateOfYearLessOneDay(){
   return Number(dayOfYear - 1);
 }
 
-async function getWeatherByPoint(lat: number, lon: number ) {
-  
-const searchDate = DateOfYearLessOneDay();
 
-  const { data } = await client.query<IWeatherByPointData, IWeatherByPointVariables>({
+async function getWeatherByPoint(lat: number, lon: number ) {
+  const searchDate = DateOfYearLessOneDay();
+  const {data,error} = await client.query<IWeatherByPointData, IWeatherByPointVariables>({
     query: GET_WEATHER_BY_POINT,
     variables: { lat, lon, searchDate }, 
-  });
+  }) 
   return data;
+  
 }
 
 export default getWeatherByPoint;

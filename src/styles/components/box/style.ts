@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 
 export const Box = styled.div`
+    user-select: none;
     display: flex;
     align-items: center;
     justify-items: center;
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    margin: 10rem 0rem 0rem 50rem;
+    margin: 10rem 0rem 0rem 60rem;
     width: 15rem;
     height: 20rem;
     border-radius: 20px;
