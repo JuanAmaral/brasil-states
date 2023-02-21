@@ -6,7 +6,7 @@ import { Mapa } from "../components/mapa";
 import { gql, useQuery } from "@apollo/client";
 import { states } from "@/utils/listStates";
 import { useState, useEffect } from "react";
-import { Container } from "../styles/pages/home/style";
+import { Container } from "../styles/components/home/style";
 import GetWeatherByPoint from "./api/apiClient";
 import WeatherBox from "@/components/weatherBox";
 
