@@ -1,13 +1,13 @@
 import { ApolloClient, createHttpLink, InMemoryCache , gql} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import { client } from './apollo';
 
 
 const GET_WEATHER_BY_POINT = gql`
-  query GetWeatherByPoint($lat: Float!, $lon: Float!) {
+  query GetWeatherByPoint($lat: Float!, $lon: Float! , $searchDate: Int!) {
     weatherByPoint(request: { lat: $lat, lon: $lon }) {
       climate {
-        days(limit: 1, offset: 52) {
+        days(limit: 1, offset: $searchDate ) {
           icon(format: SVG)
           minNightTemperature
           maxDayTemperature
@@ -22,33 +22,23 @@ const GET_WEATHER_BY_POINT = gql`
     }
   }
 `;
-const httpLink = createHttpLink({
-  uri: 'https://api.meteum.ai/graphql/query',
-  credentials: 'same-origin',
-});
 
+function DateOfYearLessOneDay(){
+  const dayOfYear =
+  Math.floor(
+    (Date.now() - new Date(new Date().getFullYear(), 0, 1).getTime()) /
+      86400000
+  ) + 1;
+  return Number(dayOfYear - 1);
+}
 
-const authLink = setContext((_, { headers }) => {
-  const token = process.env.METEUMAI_API_KEY;
-  return {
-    headers: {
-      ...headers,
-      'X-Meteum-API-Key': '1e71bc30-1981-4e8f-8019-b79584ebbbf8',
-    }
-  }
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  uri: process.env.METEUMAI_API_KEY,
-  cache: new InMemoryCache(),
+async function getWeatherByPoint(lat: number, lon: number ) {
   
-});
+const searchDate = DateOfYearLessOneDay();
 
-async function getWeatherByPoint(lat: number, lon: number) {
   const { data } = await client.query<IWeatherByPointData, IWeatherByPointVariables>({
     query: GET_WEATHER_BY_POINT,
-    variables: { lat, lon },
+    variables: { lat, lon, searchDate }, 
   });
   return data;
 }

@@ -6,8 +6,8 @@ const httpLink = createHttpLink({
   credentials: 'same-origin',
 });
 
+
 const authLink = setContext((_, { headers }) => {
-  const token = process.env.METEUMAI_API_KEY;
   return {
     headers: {
       ...headers,
@@ -18,5 +18,7 @@ const authLink = setContext((_, { headers }) => {
 
 export const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  uri: process.env.METEUMAI_API_KEY,
+  cache: new InMemoryCache(),
+  
 });

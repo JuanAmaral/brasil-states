@@ -1,6 +1,7 @@
 interface IWeatherByPointVariables {
   lat: number;
   lon: number;
+  searchDate: number;
 }
 
 interface IWeatherByPointData {

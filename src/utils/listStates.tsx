@@ -98,8 +98,8 @@ export const states = {
   PE: {
     name: "Pernambuco",
     abbreviation: "PE",
-    latitude: -8.38,
-    longitude: -37.86,
+    latitude: -8.05428,
+    longitude: -34.8813,
   },
   PI: {
     name: "Piauí",
@@ -122,8 +122,8 @@ export const states = {
   RS: {
     name: "Rio Grande do Sul",
     abbreviation: "RS",
-    latitude: -30.01,
-    longitude: -51.22,
+    latitude: -32.0332,
+    longitude: -52.0986,
   },
   RO: {
     name: "Rondônia",
