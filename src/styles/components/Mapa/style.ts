@@ -7,4 +7,5 @@ export const ContainerMap = styled.div`
     }
     cursor:pointer;
     z-index: 999;
+    -webkit-tap-highlight-color: transparent;
 `;
