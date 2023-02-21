@@ -2,6 +2,7 @@
 # brasil-states
 
  Teste vaga front-end Vylex
+ Visualização e teste acesse: https://brasil-states.vercel.app/ 
 --
 
 # Rosto da aplicação
