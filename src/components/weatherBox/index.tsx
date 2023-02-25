@@ -3,7 +3,7 @@ import {
   TemperDiv,
   DadosDiv,
   Divisor,
-} from "../../styles/components/box/style";
+} from "../../styles/components/weatherBox/style";
 import Image from "next/image";
 
 type weaterType = {
