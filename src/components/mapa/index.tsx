@@ -2,7 +2,7 @@ import useWindowSize from "@/hooks/useWindowSize";
 import { states } from "@/utils/listStates";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ContainerMap } from "../../styles/components/Mapa/style";
+import { ContainerMap } from "../../styles/components/map/style";
 
 type StateAbbreviation = keyof typeof states;
 
