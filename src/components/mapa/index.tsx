@@ -10,9 +10,10 @@ type PropsColors = {
   DefaultColor?: string;
   RegionHover?: string;
   onSeleted: (value: StateAbbreviation) => void;
+  children?: React.ReactNode;
 };
 
-export const Mapa: React.FC<PropsColors> = ({ onSeleted }) => {
+export function Mapa({ onSeleted, children }: PropsColors) {
   const [selected, setSelected] = useState<StateAbbreviation>();
   const colorUnselected = "#cdcdcd";
   const colorSelected = "#439750";
@@ -25,6 +26,7 @@ export const Mapa: React.FC<PropsColors> = ({ onSeleted }) => {
 
   return (
     <ContainerMap>
+      {children}
       <svg
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -217,4 +219,4 @@ export const Mapa: React.FC<PropsColors> = ({ onSeleted }) => {
       </svg>
     </ContainerMap>
   );
-};
+}

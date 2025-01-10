@@ -3,8 +3,8 @@ import { states } from "@/utils/listStates";
 import { Inter } from "@next/font/google";
 import { useState } from "react";
 import { Mapa } from "../components/mapa";
-import { Container } from "../styles/components/home/style";
 import GetWeatherByPoint from "./api/apiClient";
+import { Container } from "@/styles/components/home/style";
 
 const inter = Inter({ subsets: ["latin"] });
 type StateAbbreviation = keyof typeof states;

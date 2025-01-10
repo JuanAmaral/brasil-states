@@ -1,5 +1,6 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { createHttpLink } from '@apollo/client/link/http';
 
 const httpLink = createHttpLink({
   uri: 'https://api.meteum.ai/graphql/query',

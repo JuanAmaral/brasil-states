@@ -1,7 +1,6 @@
 import {
   Box,
   TemperDiv,
-  DadosDiv,
   Divisor,
 } from "../../styles/components/weatherBox/style";
 import Image from "next/image";
