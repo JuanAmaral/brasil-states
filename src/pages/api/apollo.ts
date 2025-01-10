@@ -10,7 +10,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      'X-Meteum-API-Key': 'eaead71a-62cc-4fd0-93ff-9281f451036d',
+      'X-Meteum-API-Key': 'demo_meteum_ai_api_key_ed32b1e79bf89',
     }
   }
 });
